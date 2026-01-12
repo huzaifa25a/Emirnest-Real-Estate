@@ -1,0 +1,62 @@
+const jwt = require('jsonwebtoken');
+const express = require('express');
+const bcrypt = require('bcryptjs');
+const User = require('../models/user');
+require('dotenv').config();
+
+const router = express.Router();
+
+router.post('/signin', async (req, res) => {
+    try{
+        const {username, email, password} = req.body;
+        const existing = await User.findOne({email});
+        if(existing){
+            return res.status(400).json({message: "User already exists"});
+        }
+        const hashed = await bcrypt.hash(password, 10); 
+        const user = await User.create({username, email, password: hashed});
+        console.log("Hashed Password --->",hashed);
+        const payload = {
+            id: user._id,
+            email: user.email,
+        }
+        const token = jwt.sign(payload, process.env.jwt_secret, {expiresIn: '2h'});
+
+        res.status(201).json({
+            message: 'User registered successfully',
+            token: token
+        })
+    }
+    catch(error){
+        console.error("Problem Occured --->",error)
+        res.status(500).json({message: "Server Error"});
+    }
+})
+
+router.post('/login', async (req, res) => {
+    try{
+        const {username, email, password} = req.body;
+        const user = await User.findOne({email});
+        if(!user){
+            return res.status(401).json({message: "You are not signed up"});
+        }
+        const verify = await bcrypt.compare(password, user.password || "");
+        if(!verify){
+            return res.status(401).json({message: "Invalid Credentials"});
+        }
+        const payload = {
+            id: user._id,
+            email: user.email,
+        }
+        const token = jwt.sign(payload, process.env.jwt_secret, {expiresIn: "2h"});
+        res.json({
+            message: "Login success",
+            token: token
+        })
+    }
+    catch(error){
+        res.status(500).json({message: "There is internal server error!"});
+    }
+})
+
+module.exports = router;
