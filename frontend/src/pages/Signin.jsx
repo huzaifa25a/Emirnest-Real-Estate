@@ -1,0 +1,125 @@
+import React, { useState } from 'react'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
+
+const Signin = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+
+  const navigate = useNavigate()
+
+  const signin = async (e) => {
+    e.preventDefault();
+    if(password !== confirmPassword){
+      return alert('The password do not match!');
+    }
+    try{
+      const res = await axios.post('http://localhost:3000/api/auth/signin', 
+        {
+          username: name,
+          email,
+          password,
+        }
+      )
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem('user', JSON.stringify(res.data.user));
+      navigate('/');
+    }
+    catch(error){
+      if(error.response.data.message === 'User already exists'){
+        setError("Account Already exists! please log in.");
+        setTimeout(() => {
+          setError("");
+        }, 3000);
+      }
+      console.error("Problem occured --->",error.response);
+    }
+  }
+
+  return (
+    <div className='flex justify-center items-center w-full'>
+      <div className='flex flex-col w-[400px] bg-slate-100 p-6 rounded-lg'>
+        <form onSubmit={signin} className='flex flex-col flex-wrap gap-6'>
+          <div className='flex flex-col gap-2'>
+            <label htmlFor='name'>Enter your name</label>
+            <input 
+              className='border-black border-[2px] p-2 h-8'
+              type='text'
+              name='name'
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
+          <div className='flex flex-col gap-2'>
+            <label htmlFor='email'>Enter Email</label>
+            <input 
+              className='border-black border-[2px] p-2 h-8'
+              type='email'
+              name='email'
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className='flex flex-col gap-2'>
+            <label htmlFor='password'>Enter Password</label>
+            <input
+              className='border-black border-[2px] p-2 h-8'
+              id='pwd'
+              type= {showPassword ? 'text' : 'password'}
+              name='password'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div className='flex flex-col gap-2'>
+            <label htmlFor='confirmPassword'>Confirm Password</label>
+            <input
+              className='border-black border-[2px] p-2 h-8'
+              id='cf_pwd'
+              type= {showPassword ? 'text' : 'password'}
+              name='confirmPassword'
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+            <div className='flex flex-row gap-2 items-center text-center mt-3'>
+              <label htmlFor="checkBox">Show Password</label>
+              <input
+                className='h-[15px] w-[20px] mt-[3px]'
+                type='checkbox'
+                name='checkBox'
+                onChange={(e) => setShowPassword(!showPassword)}
+              />
+            </div>
+          </div>
+          <div className='flex flex-col gap-2 w-full items-center'>
+            <button
+              className='cursor-pointer flex items-center justify-center border-black border-[2px] p-2 h-8 w-[200px]'
+              type='submit'
+            >
+              Create Account
+            </button>
+          </div>
+        </form>
+        {
+          error && 
+          <div className='flex justify-center items-center mt-4 bg-red-300 p-1 rounded'>
+            <span>{error}</span>
+          </div>
+        }
+        <div className='flex justify-center items-center mt-4'>
+          <span>Already have an account? Log in</span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default Signin
