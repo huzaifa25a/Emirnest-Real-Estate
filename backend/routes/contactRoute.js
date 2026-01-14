@@ -5,9 +5,10 @@ const router = express.Router();
 
 router.post('/contactUs', async (req, res) => {
     try{
-        const {name, email, message} = req.body;
-        const newContact = await contact.create({name, email, message});
+        const {name, email, subject, message,} = req.body;
+        const newMessage = await contact.create({name, email, subject, message});
         res.status(201).json({
+            newMessage,
             message: "message sent"
         });
     }

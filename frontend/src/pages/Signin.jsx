@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import {useAuth} from '../context/auth'
 
 const Signin = () => {
   const [name, setName] = useState("");
@@ -10,6 +11,7 @@ const Signin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
+  const {login} = useAuth();
   const navigate = useNavigate()
 
   const signin = async (e) => {
@@ -25,8 +27,7 @@ const Signin = () => {
           password,
         }
       )
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem('user', JSON.stringify(res.data.user));
+      login(res.data.token, res.data.user);
       navigate('/');
     }
     catch(error){
@@ -76,6 +77,7 @@ const Signin = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              autoComplete="new-password" 
             />
           </div>
           <div className='flex flex-col gap-2'>
@@ -88,6 +90,7 @@ const Signin = () => {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
+              autoComplete="new-password" 
             />
             <div className='flex flex-row gap-2 items-center text-center mt-3'>
               <label htmlFor="checkBox">Show Password</label>

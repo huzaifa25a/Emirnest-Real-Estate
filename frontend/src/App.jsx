@@ -14,7 +14,7 @@ const App = () => {
   return (
     <>
       <Header/>
-        <div className='min-h-[40vh]'>
+        <div className='min-h-[45vh]'>
           <Routes>
             <Route path='/' element={<Home/>}/>
             <Route path='/about' element={<About/>}/>

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import axios from 'axios'
-import gmail from '../assets/gmail.svg'
-import instagram from '../assets/instagram.svg'
-import linkedin from '../assets/linkedin.svg'
+import gmail from '../assets/icons8-gmail.svg'
+import instagram from '../assets/icons8-instagram.svg'
+import linkedin from '../assets/icons8-linkedin.svg'
 
 const Footer = () => {
   const [email, setEmail] = useState("");
@@ -26,7 +26,7 @@ const Footer = () => {
   }
 
   return (
-    <div className='bg-gray-200 left-0 bottom-0 p-4 w-full mt-20'>
+    <div className='bg-gray-100 left-0 bottom-0 p-4 w-full mt-20'>
       <div className='mt-5 flex flex-row flex-wrap justify-evenly items-start w-full h-auto'>
         <nav className='flex flex-col gap-5'>
           <NavLink to={'/about'}>About Us</NavLink>
@@ -39,14 +39,14 @@ const Footer = () => {
             <input 
               type='email'
               name='subscribe' 
-              className='p-2 h-8 w-[250px] rounded-md border-black border-[2px]' 
+              className='p-2 h-8 w-[250px] rounded-md border-gray-400 border-[1px] focus:border-[#096da7] focus:border-[2px] focus:outline-none' 
               placeholder='enter email'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
             <button 
               type='submit' 
-              className='flex items-center p-2 h-8 bg-white border-[2px] border-black rounded-md'
+              className='flex items-center p-2 h-8 border-[1px] text-white rounded-md bg-[#096da7] hover:bg-[#204d67] '
               onClick={sendEmail}
             >
                 Send
@@ -58,9 +58,9 @@ const Footer = () => {
           </div>
         }
         <div className='flex flex-row gap-4'>
-          <a href='mailto:pachisahuzaifa@gmail.com' target='_blank'><img src={gmail}/></a>
-          <a href='https://www.instagram.com/huzaifa_pachisa_/?next=%2F' target='_blank'><img src={instagram}/></a>
-          <a href='https://www.linkedin.com/in/huzaifa-pachisa-a0723a1b6/' target='_blank'><img src={linkedin}/></a>
+          <a href='mailto:pachisahuzaifa@gmail.com' target='_blank'><img src={gmail} className='h-[35px]'/></a>
+          <a href='https://www.instagram.com/huzaifa_pachisa_/?next=%2F' target='_blank'><img src={instagram} className='h-[35px]'/></a>
+          <a href='https://www.linkedin.com/in/huzaifa-pachisa-a0723a1b6/' target='_blank'><img src={linkedin} className='h-[35px]'/></a>
         </div>
       </div>
       <p className='w-full text-center mt-5'>&copy; 2026 Emirnest.com</p>

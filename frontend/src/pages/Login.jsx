@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/auth';
+import {useAuth} from '../context/auth'
 
 const Signin = () => {
   const [email, setEmail] = useState("");
@@ -23,8 +23,6 @@ const Signin = () => {
         }
       )
       login(res.data.token, res.data.user)
-      // localStorage.setItem("token", res.data.token);
-      // localStorage.setItem('user', JSON.stringify(res.data.user));
       navigate('/');
     }
     catch(error){

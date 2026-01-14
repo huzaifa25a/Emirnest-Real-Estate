@@ -11,7 +11,8 @@ router.post('/signin', async (req, res) => {
         const {username, email, password} = req.body;
         const existing = await User.findOne({email});
         if(existing){
-            return res.status(400).json({message: "User already exists"});
+            console.log("User already exists");
+            return res.status(409).json({message: "User already exists"});
         }
         const hashed = await bcrypt.hash(password, 10); 
         const user = await User.create({username, email, password: hashed});
@@ -20,10 +21,10 @@ router.post('/signin', async (req, res) => {
             id: user._id,
             email: user.email,
         }
-        const token = jwt.sign(payload, process.env.jwt_secret, {expiresIn: '2h'});
-
+        const token = jwt.sign(payload, process.env.jwt_secret, {expiresIn: '3h'});
+        console.log("Token ---->", token);
         res.status(201).json({
-            message: 'User registered successfully',
+            user: {name: user.username, email: user.email},
             token: token
         })
     }
@@ -35,10 +36,10 @@ router.post('/signin', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     try{
-        const {username, email, password} = req.body;
+        const {email, password} = req.body;
         const user = await User.findOne({email});
         if(!user){
-            return res.status(401).json({message: "You are not signed up"});
+            return res.status(401).json({message: "not signed up"});
         }
         const verify = await bcrypt.compare(password, user.password || "");
         if(!verify){
@@ -48,9 +49,9 @@ router.post('/login', async (req, res) => {
             id: user._id,
             email: user.email,
         }
-        const token = jwt.sign(payload, process.env.jwt_secret, {expiresIn: "2h"});
+        const token = jwt.sign(payload, process.env.jwt_secret, {expiresIn: "3h"});
         res.json({
-            message: "Login success",
+            user: {name: user.username, email: user.email},
             token: token
         })
     }

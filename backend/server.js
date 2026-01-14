@@ -18,6 +18,7 @@ mongoose.connect(process.env.mongo_uri)
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/property', require('./routes/propertyRoutes'))
 app.use('/api/contact', require('./routes/contactRoute'))
+app.use('/api/mailingList', require('./routes/mailingList.js'));
 
 app.listen(process.env.port, () => {
     console.log("Server listening at port ",process.env.port);

@@ -1,38 +1,35 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
-import {isLoggedIn, logout} from '../components/auth'
+import {useAuth} from '../context/auth'
 
 const Header = () => {
-  const [loggedIn, setloggedIn] = useState(isLoggedIn());
-  const navigate = useNavigate();
+  const {isLoggedIn, logout} = useAuth();
 
-  useEffect(() => {
-    setloggedIn(isLoggedIn());
-  }, []);
+  const navigate = useNavigate();
 
   const logouthandler = () => {
     logout();
-    setloggedIn(false);
     navigate('/login');
   }
 
   return (
-    <div className = 'flex flex-row flex-wrap justify-around items-center p-10 m-2 w-full'>
-        <nav className='flex flex-row justify-center gap-12 items-center w-[800px]'>
-            <NavLink to='/'>Home</NavLink>
-            <NavLink to='/properties'>Properties</NavLink>
-            <NavLink to='/about'>About</NavLink> 
-            <NavLink to='/contact'>Contact</NavLink>
+    <div className = 'flex flex-row flex-wrap justify-between items-center p-6 w-full bg-gray-100 mb-10'>
+        <h2 className='font-bold text-xl'>Emirest</h2>
+        <nav className='flex flex-row justify-center gap-12 items-center w-auto'>
+            <NavLink to='/' className={'border-b-transparent border-b-2 active:border-b-[#096da7] focus:border-b-[#096da7] text-[18px]'}>Home</NavLink>
+            <NavLink to='/properties' className={'border-b-transparent border-b-2 active:border-b-[#096da7] focus:border-b-[#096da7] text-[18px]'}>Properties</NavLink>
+            <NavLink to='/about' className={'border-b-transparent border-b-2 active:border-b-[#096da7] focus:border-b-[#096da7] text-[18px]'}>About</NavLink> 
+            <NavLink to='/contact' className={'border-b-transparent border-b-2 active:border-b-[#096da7] focus:border-b-[#096da7] text-[18px]'}>Contact</NavLink>
         </nav>
-        {loggedIn ?
-          <nav>
-            <NavLink to='/list_property'>List your property</NavLink>
-            <button onClick={logouthandler}>Logout</button>
+        {isLoggedIn ?
+          <nav className=' flex flex-row justify-end gap-6 items-center'>
+            <NavLink to='/list_property' className={'flex items-center p-3 h-10 border-[1px] text-white rounded-md bg-[#096da7] hover:bg-[#204d67] transition-all duration-200 text-[18px]'}>List your property</NavLink>
+            <button onClick={logouthandler} className='text-red-400 hover:text-red-600 transition-all duration-100 text-[18px]'>Logout</button>
           </nav>
           :
           <nav className=' flex flex-row justify-end gap-6 items-center'>
-            <NavLink to='/login'>Login</NavLink>
-            <NavLink to='/signin'>Register</NavLink>
+            <NavLink to='/login' className={'text-[#287217] hover:text-[#235019] transition-all duration-100 text-[18px]'}>Login</NavLink>
+            <NavLink to='/signin' className={'flex items-center p-3 h-10 border-[1px] text-white rounded-md bg-[#096da7] hover:bg-[#204d67] transition-all duration-200 '}>Register</NavLink>
           </nav>
         }
     </div>

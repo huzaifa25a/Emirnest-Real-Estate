@@ -14,7 +14,7 @@ const Property_Details = mongoose.Schema({
     bedrooms:   {type: Number, required: true},
     bathrooms: {type: Number, required: true},
     area: {type: Number, required: true},
-    imageUrl: String,
+    imageURL: {type: String},
     listedBy: {type: mongoose.Schema.Types.ObjectId, ref: "User"},
 },
     {timestamps: true}
