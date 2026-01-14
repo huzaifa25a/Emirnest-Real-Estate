@@ -28,7 +28,7 @@ const Header = () => {
           </nav>
           :
           <nav className=' flex flex-row justify-end gap-6 items-center'>
-            <NavLink to='/login' className={'text-[#287217] hover:text-[#235019] transition-all duration-100 text-[18px]'}>Login</NavLink>
+            <NavLink to='/login' className={'text-[#096da7] hover:text-[#204d67] transition-all duration-100 text-[18px]'}>Login</NavLink>
             <NavLink to='/signin' className={'flex items-center p-3 h-10 border-[1px] text-white rounded-md bg-[#096da7] hover:bg-[#204d67] transition-all duration-200 '}>Register</NavLink>
           </nav>
         }

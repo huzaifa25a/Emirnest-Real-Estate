@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import {useAuth} from '../context/auth'
 
 const Signin = () => {
@@ -49,7 +49,7 @@ const Signin = () => {
           <div className='flex flex-col gap-2'>
             <label htmlFor='email'>Enter Email</label>
             <input 
-              className='border-black border-[2px] p-2 h-8'
+              className='h-8 border-[1px] border-gray-400 w-[350px] p-2 focus:border-[#096da7] focus:border-[2px] focus:outline-none focus:shadow-lg'
               type='email'
               name='email'
               value={email}
@@ -60,7 +60,7 @@ const Signin = () => {
           <div className='flex flex-col gap-2'>
             <label htmlFor='password'>Enter Password</label>
             <input
-              className='border-black border-[2px] p-2 h-8'
+              className='h-8 border-[1px] border-gray-400 w-[350px] p-2 focus:border-[#096da7] focus:border-[2px] focus:outline-none focus:shadow-lg'
               id='pwd'
               type={showPassword ? 'text' : 'password'}
               name='password'
@@ -80,7 +80,7 @@ const Signin = () => {
           </div>
           <div className='flex flex-col gap-2 w-full items-center'>
             <button
-              className='cursor-pointer flex items-center justify-center border-black border-[2px] p-2 h-8 w-[100px]'
+              className='cursor-pointer flex items-center justify-center rounded-lg bg-[#096da7] shadow-md text-white p-3 hover:bg-[#204d67]  transition-all duration-100  h-10 w-[100px]'
               type='submit'
             >
               Login
@@ -93,7 +93,7 @@ const Signin = () => {
           </div>
         }
         <div className='flex justify-center items-center mt-4'>
-          <span>Do not have an account? Register</span>
+          <span>Do not have an account?<NavLink to='/signin'> Register</NavLink></span>
         </div>
       </div>
     </div>

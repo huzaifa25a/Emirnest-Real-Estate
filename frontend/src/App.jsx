@@ -9,6 +9,7 @@ import Properties from './pages/Properties';
 import ListProperty from './pages/ListProperty';
 import Header from './components/Header'
 import Footer from './components/Footer'
+import TaC from './pages/TermsAndConditions'
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
             <Route path='/signin' element={<Signin/>}/>
             <Route path='/properties' element={<Properties/>}/>
             <Route path='/list_property' element={<ListProperty/>}/>
+            <Route path='/Terms_and_conditions' element={<TaC/>}/>
           </Routes>
         </div>
       <Footer/>

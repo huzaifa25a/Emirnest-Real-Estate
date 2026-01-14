@@ -74,7 +74,7 @@ const Listproperty = () => {
         <div className='flex flex-row gap-3'>
           <label htmlFor='title' className='min-w-[200px]'>Name of Property: </label>
           <input
-            className='border-black border-[2px] rounded-md w-[368px] pl-2 p-0.5'
+            className='rounded-md w-[368px] pl-2 p-0.5 border-[1px] border-gray-400 focus:border-[#096da7] focus:border-[2px] focus:outline-none focus:shadow-lg'
             type='text'
             name='title'
             value={formData.title} 
@@ -85,7 +85,7 @@ const Listproperty = () => {
         <div className='flex flex-row gap-3'>
           <label htmlFor='description' className='min-w-[200px]'>Description:</label>
           <textarea
-            className='border-black border-[2px] rounded-md p-3'
+            className='rounded-md p-3 w-[368px] pl-2 border-[1px] border-gray-400 focus:border-[#096da7] focus:border-[2px] focus:outline-none focus:shadow-lg'
             name='description'
             placeholder='More about your property...'
             value={formData.description} 
@@ -97,7 +97,7 @@ const Listproperty = () => {
         <div className='flex flex-row gap-3'>
           <label htmlFor='price' className='min-w-[200px]'>Price:</label>
           <input
-            className='border-black border-[2px] rounded-md w-[368px] pl-2 p-0.5'
+            className='w-[368px] pl-2 p-0.5 rounded-md border-[1px] border-gray-400 focus:border-[#096da7] focus:border-[2px] focus:outline-none focus:shadow-lg'
             type='number'
             name='price'
             value={formData.price} 
@@ -109,7 +109,7 @@ const Listproperty = () => {
         <div className='flex flex-row gap-3'>
           <label htmlFor='street' className='min-w-[200px]'>Street:</label>
           <input
-            className='border-black border-[2px] rounded-md w-[368px] pl-2 p-0.5'
+            className='w-[368px] pl-2 p-0.5 rounded-md border-[1px] border-gray-400 focus:border-[#096da7] focus:border-[2px] focus:outline-none focus:shadow-lg'
             type='text'
             name='street'
             value={formData.street} 
@@ -120,7 +120,7 @@ const Listproperty = () => {
         <div className='flex flex-row gap-3'>
           <label htmlFor='city' className='min-w-[200px]'>City:</label>
           <input
-            className='border-black border-[2px] rounded-md w-[368px] pl-2 p-0.5'
+            className='w-[368px] pl-2 p-0.5 rounded-md border-[1px] border-gray-400 focus:border-[#096da7] focus:border-[2px] focus:outline-none focus:shadow-lg'
             type='text'
             name='city'
             value={formData.city} 
@@ -131,7 +131,7 @@ const Listproperty = () => {
         <div className='flex flex-row gap-3'>
           <label htmlFor='zip' className='min-w-[200px]'>Zip:</label>
           <input
-            className='border-black border-[2px] rounded-md w-[368px] pl-2 p-0.5'
+            className='w-[368px] pl-2 p-0.5 rounded-md border-[1px] border-gray-400 focus:border-[#096da7] focus:border-[2px] focus:outline-none focus:shadow-lg'
             type='number'
             name='zip' 
             value={formData.zip} 
@@ -142,7 +142,7 @@ const Listproperty = () => {
         <div className='flex flex-row gap-3'>
           <label htmlFor='country' className='min-w-[200px]'>Country:</label>
           <input
-            className='border-black border-[2px] rounded-md w-[368px] pl-2 p-0.5'
+            className='w-[368px] pl-2 p-0.5 rounded-md border-[1px] border-gray-400 focus:border-[#096da7] focus:border-[2px] focus:outline-none focus:shadow-lg'
             type='text'
             name='country' 
             value={formData.country} 
@@ -178,7 +178,7 @@ const Listproperty = () => {
         <div className='flex flex-row gap-3'>
           <label htmlFor='bedrooms' className='min-w-[200px]'>Bedrooms:</label>
           <input
-            className='border-black border-[2px] rounded-md w-[368px] pl-2 p-0.5'
+            className='w-[368px] pl-2 p-0.5 rounded-md border-[1px] border-gray-400 focus:border-[#096da7] focus:border-[2px] focus:outline-none focus:shadow-lg'
             type='number'
             name='bedrooms' 
             required
@@ -190,7 +190,7 @@ const Listproperty = () => {
         <div className='flex flex-row gap-3'>
           <label htmlFor='country' className='min-w-[200px]'>bathrooms:</label>
           <input
-            className='border-black border-[2px] rounded-md w-[368px] pl-2 p-0.5'
+            className='w-[368px] pl-2 p-0.5 rounded-md border-[1px] border-gray-400 focus:border-[#096da7] focus:border-[2px] focus:outline-none focus:shadow-lg'
             type='number'
             name='bathrooms' 
             required
@@ -202,7 +202,7 @@ const Listproperty = () => {
         <div className='flex flex-row gap-3'>
           <label htmlFor='area' className='min-w-[200px]'>Area:</label>
           <input
-            className='border-black border-[2px] rounded-md w-[368px] pl-2 p-0.5'
+            className='w-[368px] pl-2 p-0.5 rounded-md border-[1px] border-gray-400 focus:border-[#096da7] focus:border-[2px] focus:outline-none focus:shadow-lg'
             type='number'
             name='area'
             value={formData.area} 
@@ -214,7 +214,7 @@ const Listproperty = () => {
         <div className='flex flex-row gap-3'>
           <label htmlFor='image' className='min-w-[200px]'>Image Link:</label>
           <input
-            className='border-black border-[2px] rounded-md w-[368px] pl-2 p-0.5'
+            className='w-[368px] pl-2 p-0.5 rounded-md border-[1px] border-gray-400 focus:border-[#096da7] focus:border-[2px] focus:outline-none focus:shadow-lg'
             type='text'
             name='imageURL' 
             value={formData.imageURL} 
@@ -223,7 +223,7 @@ const Listproperty = () => {
         </div>
         <div className='flex w-full justify-center'>
           <button 
-            className='border-[2px] rounded-lg p-2 border-black'
+            className='border-[2px] rounded-lg bg-[#096da7] shadow-md text-white p-2 w-[150px] hover:bg-[#204d67]  transition-all duration-100'
             type='submit'
           >
             List your property
