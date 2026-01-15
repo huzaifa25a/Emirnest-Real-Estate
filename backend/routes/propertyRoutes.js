@@ -16,17 +16,27 @@ router.get('/all_properties', async (req, res) => {
 
 router.post('/add_your_listing', protect, async (req, res) => {
    try{
-    const {title, description, price, address, type, bedrooms, bathrooms, area, imageURL} = req.body;
+    const {property_name, title, description, price, term, type, usage, purpose, address, bedrooms, bathrooms, area, areaUnit, furnishing, parking, date, ownerPhone, ownerEmail, imageURL} = req.body;
    
     const newProperty = await property.create({
+        property_name,
         title,
         description,
         price,
-        address,
+        term,
         type,
+        usage,
+        purpose,
+        address,
         bedrooms,
         bathrooms,
         area,
+        areaUnit,
+        furnishing,
+        parking,
+        date,
+        ownerPhone,
+        ownerEmail,
         imageURL,
     })
     
