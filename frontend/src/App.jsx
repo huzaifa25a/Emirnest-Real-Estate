@@ -10,12 +10,12 @@ import ListProperty from './pages/ListProperty';
 import Header from './components/Header'
 import Footer from './components/Footer'
 import TaC from './pages/TermsAndConditions'
+import PropertyPage from './pages/PropertyPage';
 
 const App = () => {
   return (
     <>
-      <Header/>
-        <div className='min-h-[45vh]'>
+        <div className='min-h-[60vh]'>
           <Routes>
             <Route path='/' element={<Home/>}/>
             <Route path='/about' element={<About/>}/>
@@ -23,6 +23,7 @@ const App = () => {
             <Route path='/login' element={<Login/>}/>
             <Route path='/signin' element={<Signin/>}/>
             <Route path='/properties' element={<Properties/>}/>
+            <Route path='/properties/:property_ID' element={<PropertyPage/>}/>
             <Route path='/list_property' element={<ListProperty/>}/>
             <Route path='/Terms_and_conditions' element={<TaC/>}/>
           </Routes>
