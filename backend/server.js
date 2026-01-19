@@ -4,7 +4,6 @@ const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
-app.use(express.json());
 app.use(cors({
     origin: [
       "http://localhost:5173",
@@ -15,7 +14,8 @@ app.use(cors({
     credentials: true
   }));
   
-  app.options("*", cors());
+app.options("*", cors());
+app.use(express.json());
 
 mongoose.connect(process.env.mongo_uri)
 .then(() => {
