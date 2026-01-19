@@ -8,10 +8,14 @@ app.use(express.json());
 app.use(cors({
     origin: [
       "http://localhost:5173",
-      "https://emirnest-real-estate.vercel.app/"
+      "https://emirnest.vercel.app"
     ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true
-}));
+  }));
+  
+  app.options("*", cors());
 
 mongoose.connect(process.env.mongo_uri)
 .then(() => {
