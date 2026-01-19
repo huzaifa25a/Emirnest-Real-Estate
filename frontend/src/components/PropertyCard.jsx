@@ -19,14 +19,21 @@ import { useNavigate } from "react-router-dom";
 const PropertyCard = ({ property }) => {
   const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10];
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
-    <div className="flex flex-row gap-5 border-gray-200 border-[1px]" onClick={() => navigate(`/properties/${property.property_ID}`)}>
-      <img src={images[1]} className="h-[300px] w-[350px]"/>
+    <div className="flex flex-row gap-5 border-gray-200 border-[1px] text-[18px] w-[890px]">
+      <img
+        src={images[1]}
+        className="h-[300px] w-[350px] cursor-pointer"
+        onClick={() => navigate(`/properties/${property.property_ID}`)}
+      />
       <div className="flex flex-col gap-2 p-4 justify-evenly">
         <span>
-          AED <span className="text-[34px]">{property.price}</span>{" "}
+          AED{" "}
+          <span className="text-[34px]">
+            {new Intl.NumberFormat("en-AE").format(property.price)}
+          </span>{" "}
           {property.term}
         </span>
         <div className="flex flex-row gap-3">
@@ -44,7 +51,7 @@ const PropertyCard = ({ property }) => {
             </span>
           </span>
           <span className="pr-2 border-r-2 border-gray-200">
-            Area: {property.area}
+            Area: {new Intl.NumberFormat("en-AE").format(property.area)}
             {property.areaUnit}
           </span>
           <span>Available for: {property.purpose}</span>
@@ -72,6 +79,12 @@ const PropertyCard = ({ property }) => {
             <img src={email} className="h-[25px]" />
             Email
           </a>
+          <button
+            className="flex flex-row gap-2 bg-[#a7dfff] hover:bg-[#87d3ff] p-2 rounded-lg text-[17px] w-[130px] justify-center"
+            onClick={() => navigate(`/properties/${property.property_ID}`)}
+          >
+            Find out more
+          </button>
         </div>
       </div>
     </div>

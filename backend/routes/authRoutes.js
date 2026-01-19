@@ -19,6 +19,7 @@ router.post('/signin', async (req, res) => {
         console.log("Hashed Password --->",hashed);
         const payload = {
             id: user._id,
+            username: user.username,
             email: user.email,
         }
         const token = jwt.sign(payload, process.env.jwt_secret, {expiresIn: '3h'});
@@ -47,6 +48,7 @@ router.post('/login', async (req, res) => {
         }
         const payload = {
             id: user._id,
+            username: user.username,
             email: user.email,
         }
         const token = jwt.sign(payload, process.env.jwt_secret, {expiresIn: "3h"});
@@ -58,6 +60,19 @@ router.post('/login', async (req, res) => {
     catch(error){
         res.status(500).json({message: "There is internal server error!"});
     }
+})
+
+router.get('/userInfo', async (req, res) => {
+    const user = jwt.verify(req.query.token, process.env.jwt_secret);
+    console.log(user);
+    const user_id = User.findOne({id: user.id});
+    if(!user_id){
+        return console.log('Could not find user info!')
+    }
+    res.json({
+        name: user.username,
+        email: user.email
+    });
 })
 
 module.exports = router;

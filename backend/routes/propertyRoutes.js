@@ -16,11 +16,13 @@ router.get('/all_properties', async (req, res) => {
 
 router.post('/add_your_listing', protect, async (req, res) => {
    try{
-    const {property_ID, property_name, title, description, price, term, type, usage, purpose, address, bedrooms, bathrooms, area, areaUnit, furnishing, parking, date, ownerPhone, ownerEmail, imageURL} = req.body;
+    const {property_ID, title, description, price, term, type, usage, purpose, address, bedrooms, bathrooms, area, areaUnit, furnishing, parking, date, ownerPhone, ownerEmail, imageURL} = req.body;
+
+    const listedBy = {user_ID: req.user.id, name: req.user.username, email: req.user.email};
+    console.log(listedBy);
    
     const newProperty = await property.create({
         property_ID,
-        property_name,
         title,
         description,
         price,
@@ -39,6 +41,7 @@ router.post('/add_your_listing', protect, async (req, res) => {
         ownerPhone,
         ownerEmail,
         imageURL,
+        listedBy: listedBy
     })
     
     res.status(201).json({

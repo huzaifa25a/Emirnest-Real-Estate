@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 
 const Property_Details = mongoose.Schema({
     property_ID: {type:String, required: true, unique: true},
-    property_name: {type: String},
     title: {type: String, required: true},
     description: String,
     price: {type: Number, required: true},
     term: {type: String, enum: ["Monthly", "Yearly"], required: true},
     address: {
+        property_name: {type: String, required: true},
         street: {type: String, required: true},
         city: {type: String, required: true},
         zip: {type: Number, required: true},
@@ -26,7 +26,11 @@ const Property_Details = mongoose.Schema({
     imageURL: {type: String},
     ownerPhone: {type: Number, required: true},
     ownerEmail: {type: String},
-    listedBy: {type: mongoose.Schema.Types.ObjectId, ref: "User"},
+    listedBy: {
+        user_ID: {type: String, required: true},
+        name: {type: String, required: true},
+        email: {type: String, required: true},
+    },
 
 },
     {timestamps: true}

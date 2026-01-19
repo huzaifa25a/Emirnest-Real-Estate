@@ -56,7 +56,7 @@ const Contact = () => {
     <>
       <Header/>
       <div className='flex flex-col justify-center items-center gap-5'>
-        <h1 className='font-bold text-[24px] mb-10'>Contact Us</h1>
+        <h1 className='font-bold text-[28px] mb-10'>Contact Us</h1>
         <div className='flex flex-row justify-center items-start w-full gap-32'>
           <form onSubmit={handleFormSubmit} className='flex flex-col gap-6 justify-center items-center'>
             <div className='flex flex-row gap-3'>
@@ -117,10 +117,10 @@ const Contact = () => {
             null
           }
           </form>
-          <div className='flex flex-col gap-2 mb-6'>
-            <span><span className='font-bold'>Office address:</span> F2 bulding, Al-Shuwaiheen, Sharjah, UAE</span>
-            <span><span className='font-bold'>Phone:</span> +971 50 123 4567</span>
-            <span><span className='font-bold'>Email: </span><a href='mailto:help@emirnest.com'>help@emirnest.com</a></span>
+          <div className='flex flex-col gap-2 mb-6 text-[18px]'>
+            <div className='flex flex-row'><div className='font-bold w-[150px]'>Office address:</div>F2 bulding, Al-Shuwaiheen, Sharjah, UAE</div>
+            <div className='flex flex-row'><div className='font-bold w-[150px]'>Phone:</div><a href='tel:+971501234567'>+971 50 123 4567</a></div>
+            <div className='flex flex-row'><div className='font-bold w-[150px]'>Email: </div><a href='mailto:help@emirnest.com'>help@emirnest.com</a></div>
           </div>
         </div>
       </div>

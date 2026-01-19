@@ -23,6 +23,7 @@ const App = () => {
             <Route path='/login' element={<Login/>}/>
             <Route path='/signin' element={<Signin/>}/>
             <Route path='/properties' element={<Properties/>}/>
+            <Route path='/properties/search' element={<Properties/>}/>
             <Route path='/properties/:property_ID' element={<PropertyPage/>}/>
             <Route path='/list_property' element={<ListProperty/>}/>
             <Route path='/Terms_and_conditions' element={<TaC/>}/>
