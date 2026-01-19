@@ -6,11 +6,14 @@ import PropertyCard_Home from '../components/PropertyCard_Home'
 import bg from '../assets/bg2.png'
 
 const Home = () => {
+  const live = import.meta.env.VITE_API_BASE_URL;
+  const local = 'http://localhost:3000';
+
   const [propertyList, setPropertyList] = useState([]);
 
   useEffect(() => {
     async function fetchProperties(){
-      const response = await axios.get('http://localhost:3000/api/property/all_properties');
+      const response = await axios.get(`${live}/api/property/all_properties`);
       const properties = response.data;
       setPropertyList(properties);
     }

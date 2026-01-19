@@ -5,6 +5,9 @@ import {useAuth} from '../context/auth'
 import Header from '../components/Header'
 
 const Signin = () => {
+  const live = import.meta.env.VITE_API_BASE_URL;
+  const local = 'http://localhost:3000';
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -17,7 +20,7 @@ const Signin = () => {
   const loginHandle = async (e) => {
     e.preventDefault()
     try{
-      const res = await axios.post('http://localhost:3000/api/auth/login', 
+      const res = await axios.post(`${live}/api/auth/login`, 
         {
           email,
           password,

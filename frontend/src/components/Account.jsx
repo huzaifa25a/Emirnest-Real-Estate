@@ -4,6 +4,9 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; 
 
 const Account = () => {
+    const live = import.meta.env.VITE_API_BASE_URL;
+    const local = 'http://localhost:3000';
+
     const {isLoggedIn, logout} = useAuth();
     const [user, setUser] = useState({
         name : "",
@@ -17,7 +20,7 @@ const Account = () => {
         async function getUserInfo(){
             try{
                 if(isLoggedIn){
-                    const response = await axios.get('http://localhost:3000/api/auth/userInfo',{
+                    const response = await axios.get(`${live}/api/auth/userInfo`,{
                         params: {token: token}
                     });
                     setUser({

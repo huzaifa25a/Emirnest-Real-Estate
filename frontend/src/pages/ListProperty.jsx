@@ -5,6 +5,9 @@ import { useAuth } from "../context/auth";
 import Header from "../components/Header";
 
 const Listproperty = () => {
+  const live = import.meta.env.VITE_API_BASE_URL;
+  const local = 'http://localhost:3000';
+
   function generatePropertyID() {
     const id = Math.floor(Math.random() * 90000) + 10000;
     const property_id = "property-" + id;
@@ -57,7 +60,7 @@ const Listproperty = () => {
     const token = localStorage.getItem("token");
     try {
       const newProperty = await axios.post(
-        "http://localhost:3000/api/property/add_your_listing",
+        `${live}/api/property/add_your_listing`,
         {
           property_ID: formData.property_ID,
           title: formData.title,
