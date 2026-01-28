@@ -7,7 +7,7 @@ import bg from '../assets/bg2.png'
 
 const Home = () => {
   const live = import.meta.env.VITE_API_BASE_URL;
-  const local = 'http://localhost:3000';
+  // const live = 'http://localhost:3000';
 
   const [propertyList, setPropertyList] = useState([]);
 
@@ -27,17 +27,17 @@ const Home = () => {
   }
 
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col flex-wrap'>
       <div className='bg-black/40 inset-0 h-[100vh]' style={style}>
         <Header/>
-        <div className='flex flex-col gap-10 justify-center items-center mt-40'>
+        <div className='flex flex-col gap-10 justify-center items-center mt-40 p-5'>
           <h2 className='font-bold text-[28px] text-white'>Find your dream property in the UAE</h2>
           <Search/>
         </div>
       </div>
-      <div className='flex flex-col p-5 w-full items-center'>
+      <div className='flex flex-col flex-wrap p-5 w-full items-center'>
         <h2 className='font-bold text-[26px] mb-4'>Featured Properties</h2>
-        <div className='flex flex-row gap-4'>
+        <div className='flex flex-row items-center justify-center flex-wrap gap-4'>
           {propertyList &&
               propertyList.slice(0, 4).map((property, index) => (
                 <PropertyCard_Home key={index} property={property}/>

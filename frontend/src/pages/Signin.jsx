@@ -6,7 +6,7 @@ import Header from '../components/Header'
 
 const Signin = () => {
   const live = import.meta.env.VITE_API_BASE_URL;
-  const local = 'http://localhost:3000';
+  // const live = 'http://localhost:3000';
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

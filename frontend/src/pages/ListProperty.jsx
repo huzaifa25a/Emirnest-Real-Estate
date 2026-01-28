@@ -6,7 +6,7 @@ import Header from "../components/Header";
 
 const Listproperty = () => {
   const live = import.meta.env.VITE_API_BASE_URL;
-  const local = 'http://localhost:3000';
+  // const live = 'http://localhost:3000';
 
   function generatePropertyID() {
     const id = Math.floor(Math.random() * 90000) + 10000;
@@ -104,7 +104,7 @@ const Listproperty = () => {
   return (
     <>
       <Header />
-      <div className="gap-6 flex flex-col justify-center items-center w-full ml-[50px]">
+      <div className="gap-6 flex flex-col justify-center items-center w-auto ml-[50px]">
         <h2 className="text-[28px] font-semibold">
           List your property by filling out form below:
         </h2>

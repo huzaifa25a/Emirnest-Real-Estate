@@ -6,7 +6,7 @@ import { useSearchParams } from 'react-router-dom'
 
 const Properties = () => {
   const live = import.meta.env.VITE_API_BASE_URL;
-  const local = 'http://localhost:3000';
+  // const live = 'http://localhost:3000';
 
   const [propertyList, setPropertyList] = useState([]);
   const [searchParams] = useSearchParams();
@@ -34,7 +34,7 @@ const Properties = () => {
         :
           <h2 className='font-semibold text-[28px] mb-10'>Properties available for your search</h2>
         }
-        <div className='flex flex-col gap-10'>
+        <div className='flex flex-col gap-10 p-10'>
           {propertyList && !searchParams.has('purpose') ?
               propertyList.map((property, index) => (
                 <PropertyCard key={index} property= {property}/>

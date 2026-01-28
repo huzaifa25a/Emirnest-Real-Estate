@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { NavLink, useNavigate, useLocation } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
+import { X, Menu } from "lucide-react";
 import { useAuth } from "../context/auth";
 import Account from "./Account";
 import Home from "../assets/home.svg";
@@ -7,112 +8,132 @@ import HomeBlack from "../assets/home_blue.svg";
 import account from "../assets/account.svg";
 
 const Header = () => {
-  const { isLoggedIn, logout } = useAuth();
+  const { isLoggedIn } = useAuth();
   const [openAccount, setOpenAccount] = useState(false);
-
-  const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const isHome = useLocation().pathname === "/";
 
   return (
-    <div
-      className={`flex flex-row flex-wrap justify-between items-center p-6 w-full ${
+    <header
+      className={`w-full p-6 mb-10 ${
         isHome ? "" : "bg-gray-100"
-      } mb-10`}
+      }`}
     >
-      <div className="flex flex-row gap-2 items-end">
-        <h2
-          className={`font-bold text-3xl ${
-            isHome ? "text-white" : "text-[#096da7]"
+      {/* TOP BAR */}
+      <div className="flex justify-between items-center">
+        {/* LOGO */}
+        <div className="flex gap-2 items-end">
+          <h2
+            className={`font-bold text-3xl ${
+              isHome ? "text-white" : "text-[#096da7]"
+            }`}
+          >
+            Emirnest
+          </h2>
+          <img src={isHome ? Home : HomeBlack} className="h-10" />
+        </div>
+
+        {/* DESKTOP NAV */}
+        <nav
+          className={`hidden md:flex gap-12 items-center text-[18px] ${
+            isHome ? "text-white" : ""
           }`}
         >
-          Emirnest
-        </h2>
-        {isHome ? (
-          <img src={Home} className="h-10" />
-        ) : (
-          <img src={HomeBlack} className="h-10" />
-        )}
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/properties">Properties</NavLink>
+          <NavLink to="/about">About</NavLink>
+          <NavLink to="/contact">Contact</NavLink>
+        </nav>
+
+        {/* DESKTOP AUTH */}
+        <div className="hidden md:flex items-center gap-6 text-[18px]">
+          {isLoggedIn ? (
+            <>
+              <NavLink
+                to="/list_property"
+                className="bg-[#096da7] text-white px-4 py-2 rounded-md"
+              >
+                List your property
+              </NavLink>
+              <button onClick={() => setOpenAccount(!openAccount)}>
+                <img src={account} className="h-12" />
+              </button>
+              {openAccount && <Account />}
+            </>
+          ) : (
+            <>
+              <NavLink
+                to="/login"
+                className={isHome ? "text-white" : "text-[#096da7]"}
+              >
+                Login
+              </NavLink>
+              <NavLink
+                to="/signin"
+                className="bg-[#096da7] text-white px-4 py-2 rounded-md"
+              >
+                Register
+              </NavLink>
+            </>
+          )}
+        </div>
+
+        {/* HAMBURGER ICON */}
+        <button
+          className="md:hidden"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? isHome ?
+            <X size={28} color="white" /> : <X size={28} />
+          : isHome ?
+            <Menu size={28} color="white"/> : <Menu size={28} />}
+        </button>
       </div>
-      <nav
-        className={`flex flex-row justify-center gap-12 items-center w-auto ${
-          isHome ? "text-white" : ""
-        }`}
-      >
-        <NavLink
-          to="/"
-          className={
-            "border-b-transparent border-b-2 active:border-b-[#096da7] focus:border-b-[#096da7] text-[18px] hover:border-b-[#096da7]"
-          }
-        >
-          Home
-        </NavLink>
-        <NavLink
-          to="/properties"
-          className={
-            "border-b-transparent border-b-2 active:border-b-[#096da7] focus:border-b-[#096da7] text-[18px] hover:border-b-[#096da7]"
-          }
-        >
-          Properties
-        </NavLink>
-        <NavLink
-          to="/about"
-          className={
-            "border-b-transparent border-b-2 active:border-b-[#096da7] focus:border-b-[#096da7] text-[18px] hover:border-b-[#096da7]"
-          }
-        >
-          About
-        </NavLink>
-        <NavLink
-          to="/contact"
-          className={
-            "border-b-transparent border-b-2 active:border-b-[#096da7] focus:border-b-[#096da7] text-[18px] hover:border-b-[#096da7]"
-          }
-        >
-          Contact
-        </NavLink>
-      </nav>
-      {isLoggedIn ? (
-        <nav className=" flex flex-row justify-end gap-6 items-center">
-          <NavLink
-            to="/list_property"
-            className={
-              "flex items-center p-3 h-10 text-white rounded-md bg-[#096da7] hover:bg-[#204d67] transition-all duration-200 text-[18px] focus:outline-none"
-            }
-          >
-            List your property
-          </NavLink>
-          <div className="flex flex-col">
-            <button onClick={() => setOpenAccount(!openAccount)}>
-              <img
-                src={account}
-                className="h-[50px] hover:opacity-85 transition-all duration-200"
-              />
-            </button>
-            {openAccount ? <Account /> : null}
+
+      {/* MOBILE MENU */}
+      {menuOpen && (
+        <div className="md:hidden fixed right-0 mt-6 w-[300px] bg-white rounded-lg shadow-lg p-6 space-y-4 text-[18px]">
+          <div className="flex flex-col items-center gap-10">
+            <NavLink onClick={() => setMenuOpen(false)} to="/">Home</NavLink>
+            <NavLink onClick={() => setMenuOpen(false)} to="/properties">Properties</NavLink>
+            <NavLink onClick={() => setMenuOpen(false)} to="/about">About</NavLink>
+            <NavLink onClick={() => setMenuOpen(false)} to="/contact">Contact</NavLink>
           </div>
-        </nav>
-      ) : (
-        <nav className=" flex flex-row justify-end gap-6 items-center">
-          <NavLink
-            to="/login"
-            className={`${
-              isHome ? "text-white" : "text-[#096da7] hover:text-[#204d67] "
-            } transition-all duration-100 text-[18px]`}
-          >
-            Login
-          </NavLink>
-          <NavLink
-            to="/signin"
-            className={
-              "flex items-center p-3 h-10 border-[1px] text-white rounded-md bg-[#096da7] hover:bg-[#204d67] transition-all duration-200 "
-            }
-          >
-            Register
-          </NavLink>
-        </nav>
+
+          <hr />
+
+          {isLoggedIn ? (
+            <>
+              <NavLink
+                to="/list_property"
+                onClick={() => setMenuOpen(false)}
+                className="block bg-[#096da7] text-white text-center py-2 rounded-md"
+              >
+                List your property
+              </NavLink>
+            </>
+          ) : (
+            <>
+              <NavLink 
+                onClick={() => setMenuOpen(false)} 
+                to="/login"
+                className='block text-center'
+              >
+                Login
+              </NavLink>
+              <NavLink
+                onClick={() => setMenuOpen(false)}
+                to="/signin"
+                className="block bg-[#096da7] text-white text-center py-2 rounded-md"
+              >
+                Register
+              </NavLink>
+            </>
+          )}
+        </div>
       )}
-    </div>
+    </header>
   );
 };
 

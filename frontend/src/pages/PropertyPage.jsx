@@ -11,7 +11,7 @@ import img from "../assets/emirest_house_images/pexels-pixabay-209315.jpg";
 
 const PropertyPage = () => {
   const live = import.meta.env.VITE_API_BASE_URL;
-  const local = 'http://localhost:3000';
+  // const live = 'http://localhost:3000';
 
   const { property_ID } = useParams();
   const [property, setProperty] = useState({});

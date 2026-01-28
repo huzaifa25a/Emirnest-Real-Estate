@@ -5,7 +5,7 @@ import '../index.css'
 
 const Contact = () => {
   const live = import.meta.env.VITE_API_BASE_URL;
-  const local = 'http://localhost:3000';
+  // const live = 'http://localhost:3000';
 
   const [form, setForm] = useState({
     name: "",
@@ -60,7 +60,12 @@ const Contact = () => {
       <Header/>
       <div className='flex flex-col justify-center items-center gap-5'>
         <h1 className='font-bold text-[28px] mb-10'>Contact Us</h1>
-        <div className='flex flex-row justify-center items-start w-full gap-32'>
+        <div className='flex flex-row justify-evenly gap-5 items-start w-full flex-wrap'>
+          <div className='pl-4 flex flex-col gap-4 mb-6 text-[18px]'>
+              <div className='flex flex-row max-w-[376px]'><div className='font-bold min-w-[150px]'>Office address:</div>F2 bulding, Al-Shuwaiheen, Sharjah, UAE</div>
+              <div className='flex flex-row max-w-[376px]'><div className='font-bold min-w-[150px]'>Phone:</div><a href='tel:+971501234567'>+971 50 123 4567</a></div>
+              <div className='flex flex-row max-w-[376px]'><div className='font-bold min-w-[150px]'>Email: </div><a href='mailto:help@emirnest.com'>help@emirnest.com</a></div>
+          </div>
           <form onSubmit={handleFormSubmit} className='flex flex-col gap-6 justify-center items-center'>
             <div className='flex flex-row gap-3'>
               <input
@@ -120,11 +125,6 @@ const Contact = () => {
             null
           }
           </form>
-          <div className='flex flex-col gap-2 mb-6 text-[18px]'>
-            <div className='flex flex-row'><div className='font-bold w-[150px]'>Office address:</div>F2 bulding, Al-Shuwaiheen, Sharjah, UAE</div>
-            <div className='flex flex-row'><div className='font-bold w-[150px]'>Phone:</div><a href='tel:+971501234567'>+971 50 123 4567</a></div>
-            <div className='flex flex-row'><div className='font-bold w-[150px]'>Email: </div><a href='mailto:help@emirnest.com'>help@emirnest.com</a></div>
-          </div>
         </div>
       </div>
     </>

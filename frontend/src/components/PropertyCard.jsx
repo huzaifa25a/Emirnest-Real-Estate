@@ -22,13 +22,13 @@ const PropertyCard = ({ property }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-row gap-5 border-gray-200 border-[1px] text-[18px] w-[890px]">
+    <div className="flex flex-row gap-5 border-gray-200 border-[1px] text-[18px] max-w-[890px] flex-wrap">
       <img
         src={images[1]}
-        className="h-[300px] w-[350px] cursor-pointer"
+        className="h-auto lg:w-[350px] cursor-pointer"
         onClick={() => navigate(`/properties/${property.property_ID}`)}
       />
-      <div className="flex flex-col gap-2 p-4 justify-evenly">
+      <div className="flex flex-col gap-6 p-4 justify-evenly">
         <span>
           AED{" "}
           <span className="text-[34px]">
@@ -40,7 +40,7 @@ const PropertyCard = ({ property }) => {
           <span className="pr-2 border-r-2 border-gray-200">
             {property.type}
           </span>
-          <span className="flex flex-row gap-3 pr-2 border-r-2 border-gray-200">
+          <span className="flex flex-row flex-wrap justify-center gap-3 pr-2 border-r-2 border-gray-200">
             <span className="flex flex-row gap-2 items-center">
               <img src={bedroom} className="h-[20px]" />
               {property.bedrooms}

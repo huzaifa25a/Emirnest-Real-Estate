@@ -1,4 +1,5 @@
 const express = require("express");
+// const jwt = require('jsonwebtoken');
 const protect = require('../middleware/authMiddleware');
 const property = require('../models/property');
 
@@ -69,5 +70,21 @@ router.get('/:property_ID', async(req, res) => {
         console.log('Error fetching property data --->', error);
     }
 })
+
+// router.get('/my_listings', async (req, res) => {
+//     try{
+//         const user = jwt.verify(req.token, process.env.jwt_secret);
+//         if(!user){
+//             return res.status(402).json({message: "Not Authorized"});
+//         }
+//         res.json({
+//             user: user,
+//             message: 'YESSSS'
+//         })
+//     } 
+//     catch(error){
+//         console.log("Error fetching your property list --->",error);
+//     }
+// })
 
 module.exports = router;

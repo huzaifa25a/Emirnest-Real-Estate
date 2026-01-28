@@ -7,7 +7,7 @@ import linkedin from '../assets/icons8-linkedin.svg'
 
 const Footer = () => {
   const live = import.meta.env.VITE_API_BASE_URL;
-  const local = 'http://localhost:3000';
+  // const live = 'http://localhost:3000';
 
   const [email, setEmail] = useState("");
   const [message, showMessage] = useState(false);
@@ -30,15 +30,15 @@ const Footer = () => {
 
   return (
     <div className='bg-gray-100 left-0 bottom-0 p-4 w-full mt-20'>
-      <div className='mt-5 flex flex-row flex-wrap justify-evenly items-start w-full h-auto'>
-        <nav className='flex flex-col gap-5'>
+      <div className='mt-5 flex flex-row flex-wrap flex-shrink lg:gap-36 gap-10 justify-center items-start w-full h-auto'>
+        <nav className={`flex md:flex-col md:gap-5 justify-between gap-10 flex-row`}>
           <NavLink to={'/about'}>About Us</NavLink>
           <NavLink to={'/contact'}>Contact Us</NavLink>
           <NavLink to={'/Terms_and_conditions'}>Terms and Privacy Policy</NavLink>
         </nav>
         {!message ? 
-          <div className='flex flex-row gap-2 items-center min-w-[600px]'>
-            <label htmlFor='subscribe'>Subscribe for latest news:</label>
+          <div className='flex flex-row gap-2 items-center justify-center max-w-[600px] flex-wrap'>
+            <label htmlFor='subscribe' className='text-start'>Subscribe for latest news:</label>
             <input 
               type='email'
               name='subscribe' 
@@ -60,7 +60,7 @@ const Footer = () => {
             <span>Thanks for Subscribing!</span>
           </div>
         }
-        <div className='flex flex-row gap-4'>
+        <div className='flex flex-row flex-wrap gap-4'>
           <a href='mailto:pachisahuzaifa@gmail.com' target='_blank'><img src={gmail} className='h-[35px]'/></a>
           <a href='https://www.instagram.com/huzaifa_pachisa_/?next=%2F' target='_blank'><img src={instagram} className='h-[35px]'/></a>
           <a href='https://www.linkedin.com/in/huzaifa-pachisa-a0723a1b6/' target='_blank'><img src={linkedin} className='h-[35px]'/></a>
