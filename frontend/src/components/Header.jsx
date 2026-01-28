@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate} from "react-router-dom";
 import { X, Menu } from "lucide-react";
 import { useAuth } from "../context/auth";
 import Account from "./Account";
@@ -12,6 +12,7 @@ const Header = () => {
   const [openAccount, setOpenAccount] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const navigate = useNavigate();
   const isHome = useLocation().pathname === "/";
 
   const handleLogout = () => {
@@ -119,7 +120,7 @@ const Header = () => {
               </NavLink>
               <button
                 onClick={handleLogout}
-                className="block text-center text-red-400 hover:text-red-600 duration-200"
+                className="block w-[250px] text-red-400 hover:text-red-600"
               >
                 Logout
               </button>
