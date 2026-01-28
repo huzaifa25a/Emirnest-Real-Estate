@@ -8,11 +8,16 @@ import HomeBlack from "../assets/home_blue.svg";
 import account from "../assets/account.svg";
 
 const Header = () => {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, logout } = useAuth();
   const [openAccount, setOpenAccount] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const isHome = useLocation().pathname === "/";
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  }
 
   return (
     <header
@@ -112,6 +117,12 @@ const Header = () => {
               >
                 List your property
               </NavLink>
+              <button
+                onClick={handleLogout}
+                className="block text-center text-red-400 hover:text-red-600 duration-200"
+              >
+                Logout
+              </button>
             </>
           ) : (
             <>
