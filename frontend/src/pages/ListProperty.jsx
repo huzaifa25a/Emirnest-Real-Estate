@@ -5,8 +5,8 @@ import { useAuth } from "../context/auth";
 import Header from "../components/Header";
 
 const Listproperty = () => {
-  // const live = import.meta.env.VITE_API_BASE_URL;
-  const live = 'http://localhost:3000';
+  const live = import.meta.env.VITE_API_BASE_URL;
+  // const live = 'http://localhost:3000';
 
   function generatePropertyID() {
     const id = Math.floor(Math.random() * 90000) + 10000;

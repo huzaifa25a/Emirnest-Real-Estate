@@ -6,8 +6,8 @@ import PropertyCard_Home from '../components/PropertyCard_Home'
 import bg from '../assets/bg2.png'
 
 const Home = () => {
-  // const live = import.meta.env.VITE_API_BASE_URL;
-  const live = 'http://localhost:3000';
+  const live = import.meta.env.VITE_API_BASE_URL;
+  // const live = 'http://localhost:3000';
 
   const [propertyList, setPropertyList] = useState([]);
 

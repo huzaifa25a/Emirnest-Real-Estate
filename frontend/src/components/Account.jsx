@@ -7,8 +7,8 @@ import list from '../assets/list.svg'
 import person from '../assets/person.svg'
 
 const Account = () => {
-    // const live = import.meta.env.VITE_API_BASE_URL;
-    const live = 'http://localhost:3000';
+    const live = import.meta.env.VITE_API_BASE_URL;
+    // const live = 'http://localhost:3000';
 
     const {isLoggedIn, logout} = useAuth();
     const [User, setUser] = useState({
