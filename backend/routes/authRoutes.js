@@ -64,7 +64,7 @@ router.post('/login', async (req, res) => {
 
 router.get('/userInfo', async (req, res) => {
     const user = jwt.verify(req.query.token, process.env.jwt_secret);
-    console.log(user);
+    // console.log(user);
     const user_id = User.findOne({id: user.id});
     if(!user_id){
         return console.log('Could not find user info!')

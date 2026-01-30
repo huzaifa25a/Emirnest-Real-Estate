@@ -4,8 +4,8 @@ import Header from '../components/Header'
 import '../index.css'
 
 const Contact = () => {
-  const live = import.meta.env.VITE_API_BASE_URL;
-  // const live = 'http://localhost:3000';
+  // const live = import.meta.env.VITE_API_BASE_URL;
+  const live = 'http://localhost:3000';
 
   const [form, setForm] = useState({
     name: "",

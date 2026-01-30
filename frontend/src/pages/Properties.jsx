@@ -5,8 +5,8 @@ import PropertyCard from '../components/PropertyCard'
 import { useSearchParams } from 'react-router-dom'
 
 const Properties = () => {
-  const live = import.meta.env.VITE_API_BASE_URL;
-  // const live = 'http://localhost:3000';
+  // const live = import.meta.env.VITE_API_BASE_URL;
+  const live = 'http://localhost:3000';
 
   const [propertyList, setPropertyList] = useState([]);
   const [searchParams] = useSearchParams();
