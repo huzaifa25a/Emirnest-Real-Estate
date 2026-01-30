@@ -40,7 +40,7 @@ const MyListings = () => {
           params: { token: token },
         });
         if (!result) {
-          setShowMessage(true);
+          return setShowMessage(true);
         }
         setShowMessage(false);
         setListings(result.data);
