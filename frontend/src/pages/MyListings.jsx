@@ -39,7 +39,7 @@ const MyListings = () => {
         const result = await axios.get(`${live}/api/property/my_listings`, {
           params: { token: token },
         });
-        if (!result) {
+        if (result.data.length === 0) {
           return setShowMessage(true);
         }
         setShowMessage(false);
@@ -150,7 +150,7 @@ const MyListings = () => {
               ))}
             </div>
           </div>
-        ) : (
+        ) : showMessage && (
           <div className="flex flex-col items-center gap-5">
             <h2 className="text-[28px]">You have not listed any properties</h2>
             <NavLink
