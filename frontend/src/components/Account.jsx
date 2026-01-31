@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {useAuth} from '../context/auth'
-import axios from 'axios';
+import axios, { HttpStatusCode } from 'axios';
 import { useNavigate } from 'react-router-dom'; 
 import settings from '../assets/settings.svg'
 import list from '../assets/list.svg'
@@ -11,10 +11,6 @@ const Account = () => {
     // const live = 'http://localhost:3000';
 
     const {isLoggedIn, logout} = useAuth();
-    const [User, setUser] = useState({
-        name : "",
-        email: "",
-    });
 
     const token = localStorage.getItem('token');
     const user = JSON.parse(localStorage.getItem('user')).name;
@@ -23,18 +19,19 @@ const Account = () => {
     useEffect(() => {
         async function getUserInfo(){
             try{
-                if(isLoggedIn){
-                    const response = await axios.get(`${live}/api/auth/userInfo`,{
-                        params: {token: token}
-                    });
-                    setUser({
-                        name: response.data.name,
-                        email: response.data.email
-                    })
+                const response = await axios.get(`${live}/api/auth/checkAuth`,{
+                    headers: {Authorization: `Bearer ${token}`}
+                });
+                console.log('Response Received --->', response);
+                if(!response){
+                    logout();
+                    navigate('/login');
                 }
             }
             catch(err){
-                console.log("error fetching user info", err);
+                console.error(HttpStatusCode.Forbidden);
+                logout();
+                navigate('/login');
             }
         }
         getUserInfo()

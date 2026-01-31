@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const User = require('../models/user');
+const protect = require('../middleware/authMiddleware');
 require('dotenv').config();
 
 const router = express.Router();
@@ -62,17 +63,14 @@ router.post('/login', async (req, res) => {
     }
 })
 
-router.get('/userInfo', async (req, res) => {
-    const user = jwt.verify(req.query.token, process.env.jwt_secret);
-    // console.log(user);
-    const user_id = User.findOne({id: user.id});
-    if(!user_id){
-        return console.log('Could not find user info!')
+router.get('/checkAuth', protect, async (req, res) => {
+    try{
+        console.log('CHECKEDDDDD')
+        res.status(200).json({message: "Authenticated"});
     }
-    res.json({
-        name: user.username,
-        email: user.email
-    });
+    catch(err){
+        res.status(403).json({message: "Not Authenticated"});
+    }
 })
 
 module.exports = router;

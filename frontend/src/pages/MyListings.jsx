@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
+import {useAuth} from '../context/auth'
 import img from "../assets/emirest_house_images/pexels-binyaminmellish-1396122.jpg";
 import location from "../assets/location.svg";
 import trash from "../assets/trash.svg";
@@ -13,12 +14,13 @@ import bed from "../assets/bedroom.svg";
 
 const MyListings = () => {
   const live = import.meta.env.VITE_API_BASE_URL;
-//   const live = "http://localhost:3000";
+  // const live = "http://localhost:3000";
   const [listings, setListings] = useState([]);
   const [showMessage, setShowMessage] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [id, setId] = useState("");
 
+  const {logout} = useAuth();
   const navigate = useNavigate();
 
   const token = localStorage.getItem("token");
@@ -34,6 +36,18 @@ const MyListings = () => {
   }, [showPopup]);
 
   useEffect(() => {
+    const checkAuth = async () => {
+      try{
+        await axios.get(`${live}/api/auth/checkAuth`,{
+          headers: {Authorization: `Bearer ${token}`}
+        });
+      }
+      catch(err){
+        logout();
+        navigate('/login');
+      }
+    }
+
     async function fetchListing() {
       try {
         const result = await axios.get(`${live}/api/property/my_listings`, {
@@ -49,6 +63,7 @@ const MyListings = () => {
       }
     }
 
+    checkAuth();
     fetchListing();
   }, []);
 
