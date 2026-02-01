@@ -4,18 +4,22 @@ import Header from '../components/Header'
 import Search from '../components/Search'
 import PropertyCard_Home from '../components/PropertyCard_Home'
 import bg from '../assets/bg2.png'
+import loader from '../assets/bouncing-circles.svg';
 
 const Home = () => {
   const live = import.meta.env.VITE_API_BASE_URL;
   // const live = 'http://localhost:3000';
 
   const [propertyList, setPropertyList] = useState([]);
+  const [Loader, setLoader] = useState(false);
 
   useEffect(() => {
     async function fetchProperties(){
+      setLoader(true);
       const response = await axios.get(`${live}/api/property/all_properties`);
       const properties = response.data;
       setPropertyList(properties);
+      setLoader(false);
     }
     fetchProperties();
   }, []);
@@ -38,10 +42,15 @@ const Home = () => {
       <div className='flex flex-col flex-wrap p-5 w-full items-center'>
         <h2 className='font-bold text-[26px] mb-4'>Featured Properties</h2>
         <div className='flex flex-row items-center justify-center flex-wrap gap-4'>
-          {propertyList &&
+          {!Loader ?
               propertyList.slice(0, 4).map((property, index) => (
                 <PropertyCard_Home key={index} property={property}/>
               ))
+            :
+            <span className='mt-10 flex flex-row gap-1 font-medium text-[18px]'>
+              Please wait a few seconds 
+              <img src={loader} className='h-10'/>
+            </span>
           }
         </div>
       </div>
