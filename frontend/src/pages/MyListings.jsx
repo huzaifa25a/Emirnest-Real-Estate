@@ -15,6 +15,7 @@ import bed from "../assets/bedroom.svg";
 const MyListings = () => {
   const live = import.meta.env.VITE_API_BASE_URL;
   // const live = "http://localhost:3000";
+  
   const [listings, setListings] = useState([]);
   const [showMessage, setShowMessage] = useState(false);
   const [showPopup, setShowPopup] = useState(false);

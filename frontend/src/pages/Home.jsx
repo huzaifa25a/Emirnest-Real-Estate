@@ -47,7 +47,7 @@ const Home = () => {
                 <PropertyCard_Home key={index} property={property}/>
               ))
             :
-            <span className='mt-10 flex flex-row gap-1 font-medium text-[18px]'>
+            <span className='mt-10 items-center flex flex-row gap-1 font-medium text-[20px]'>
               Please wait a few seconds 
               <img src={loader} className='h-10'/>
             </span>
