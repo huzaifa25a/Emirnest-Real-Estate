@@ -113,12 +113,12 @@ const Listproperty = () => {
           className="p-8 flex flex-col justify-center items-start gap-6 mt-[20px] w-auto text-[18px] border-gray-200 border-[2px] shadow-md"
         >
           {/*Headline*/}
-          <div className="flex flex-row gap-3">
+          <div className="flex flex-row gap-3 flex-wrap">
             <label htmlFor="title" className="min-w-[150px]">
               Headline:{" "}
             </label>
             <input
-              className="rounded-md w-[872px]  pl-2 p-0.5 border-[1px] border-gray-400 focus:border-[#096da7] focus:border-[2px] focus:outline-none focus:shadow-lg"
+              className="rounded-md sm:w-[872px] pl-2 p-0.5 border-[1px] border-gray-400 focus:border-[#096da7] focus:border-[2px] focus:outline-none focus:shadow-lg"
               type="text"
               name="title"
               value={formData.title}
@@ -133,7 +133,7 @@ const Listproperty = () => {
               Description:
             </label>
             <textarea
-              className="rounded-md p-3 w-[872px] pl-2 border-[1px] border-gray-400 focus:border-[#096da7] focus:border-[2px] focus:outline-none focus:shadow-lg"
+              className="rounded-md p-3 sm:w-[872px] pl-2 border-[1px] border-gray-400 focus:border-[#096da7] focus:border-[2px] focus:outline-none focus:shadow-lg"
               name="description"
               placeholder="More about your property..."
               value={formData.description}
@@ -518,7 +518,7 @@ const Listproperty = () => {
               Image Link:
             </label>
             <input
-              className="w-[872px] pl-2 p-0.5 rounded-md border-[1px] border-gray-400 focus:border-[#096da7] focus:border-[2px] focus:outline-none focus:shadow-lg"
+              className="sm:w-[872px] pl-2 p-0.5 rounded-md border-[1px] border-gray-400 focus:border-[#096da7] focus:border-[2px] focus:outline-none focus:shadow-lg"
               type="url"
               name="imageURL"
               value={formData.imageURL}

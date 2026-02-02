@@ -11,6 +11,7 @@ import visit from "../assets/visit.svg";
 import date from "../assets/date.svg";
 import bath from "../assets/bathroom.svg";
 import bed from "../assets/bedroom.svg";
+import loader from '../assets/bouncing-circles.svg';
 
 const MyListings = () => {
   const live = import.meta.env.VITE_API_BASE_URL;
@@ -19,6 +20,7 @@ const MyListings = () => {
   const [listings, setListings] = useState([]);
   const [showMessage, setShowMessage] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const [Loader, setLoader] = useState(false);
   const [id, setId] = useState("");
 
   const {logout} = useAuth();
@@ -51,12 +53,15 @@ const MyListings = () => {
 
     async function fetchListing() {
       try {
+        setLoader(true);
         const result = await axios.get(`${live}/api/property/my_listings`, {
           params: { token: token },
         });
         if (result.data.length === 0) {
+          setLoader(false);
           return setShowMessage(true);
         }
+        setLoader(false);
         setShowMessage(false);
         setListings(result.data);
       } catch (err) {
@@ -186,20 +191,28 @@ const MyListings = () => {
             <div className="flex flex-row gap-3">
               <button
                 className="w-20 rounded-md p-2 border-gray-200 border-[1px] shadow-sm hover:bg-gray-100"
-                onClick={() => deleteProperty(id)}
-              >
-                Confirm
-              </button>
-              <button
-                className="w-20 text-white rounded-md p-2 border-gray-200 border-[1px] shadow-sm bg-[#e34c4c] hover:bg-[#942b2b]"
                 onClick={() => setShowPopup(false)}
               >
                 Cancel
+              </button>
+              <button
+                className="w-20 text-white rounded-md p-2 border-gray-200 border-[1px] shadow-sm bg-[#e34c4c] hover:bg-[#942b2b]"
+                onClick={() => deleteProperty(id)}
+              >
+                Confirm
               </button>
             </div>
           </div>
         </div>
       )}
+      {Loader ?
+        <span className='mt-10 items-center justify-center flex flex-row gap-1 font-medium text-[20px]'>
+            The backend is running on free version so it may take some time to load. Please wait
+            <img src={loader} className='h-10'/>
+        </span>
+      :
+      null
+      }
     </>
   );
 };

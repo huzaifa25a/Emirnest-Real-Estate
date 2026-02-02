@@ -35,9 +35,9 @@ const PropertyPage = () => {
   return (
     <>
       <Header />
-      <div className="flex flex-col items-center justify-center text-[18px]">
-        <img src={img} className="h-[100%] w-[55vw]" />
-        <div className="flex flex-col w-[55vw] gap-10 items-start">
+      <div className="flex flex-col items-center justify-center text-[18px] p-4">
+        <img src={img} className="h-[100%] sm:w-[55vw]" />
+        <div className="flex flex-col sm:w-[55vw] gap-10 items-start">
           <div className="flex flex-col gap-3">
             <span className="font-semibold text-[24px]">
               AED{" "}
@@ -55,12 +55,12 @@ const PropertyPage = () => {
               ) : null}
             </div>
             <div className="flex flex-row gap-3">
-              <span className="flex flex-row gap-3 pr-2 border-r-2 border-gray-200">
-                <span className="flex flex-row gap-2 items-center">
+              <span className="flex flex-row gap-3">
+                <span className="flex flex-row flex-wrap gap-2 pr-2 items-center border-r-2 border-gray-200">
                   <img src={bedroom} className="h-[20px]" />
                   {property.bedrooms} Beds
                 </span>
-                <span className="flex flex-row gap-2 items-center">
+                <span className="flex flex-row flex-wrap gap-2 pr-2 items-center border-r-2 border-gray-200">
                   <img src={bathroom} className="h-[20px]" />
                   {property.bathrooms} Baths
                 </span>
@@ -77,9 +77,9 @@ const PropertyPage = () => {
             <span>{property.description}</span>
           </div>
           {/*Property Info  */}
-          <div className="flex gap-5 flex-col">
-            <h2 className="text-[20px] font-semibold">Property Information</h2>
-            <div className="flex flex-row justify-start gap-48 w-[55vw]">
+          <div className="flex gap-5 flex-col items-center w-full max-w-[45vw]">
+            <h2 className="text-[20px] font-semibold self-start">Property Information</h2>
+            <div className="w-full flex flex-row justify-between gap-3 flex-wrap">
               <div className="flex flex-col gap-3">
                 <span className="flex flex-row border-b-2 border-gray-100 pb-2">
                   <div className="w-[150px]">
@@ -123,10 +123,10 @@ const PropertyPage = () => {
             </div>
           </div>
           {/*Owner and Listed By Info  */}
-          <div className="flex flex-row gap-24 w-[55vw]">
-            <div className="flex gap-5 flex-col">
+          <div className="flex flex-row sm:gap-24 sm:w-[55vw] gap-10 flex-wrap">
+            <div className="flex gap-3 flex-col">
               <h2 className="text-[20px] font-semibold">Owner Information</h2>
-              <div className="flex flex-col gap-5 justify-center items-start">
+              <div className="flex flex-col gap-2 justify-center items-start">
                 <span>
                   Name: {property.listedBy ? property.listedBy.name : ""}
                 </span>
@@ -148,9 +148,9 @@ const PropertyPage = () => {
                 </div>
               </div>
             </div>
-            <div className="flex gap-5 flex-col">
-              <h2 className="text-[20px] font-semibold">Listed By</h2>
-              <div className="flex flex-col gap-5 justify-center items-start">
+            <div className="flex gap-3 flex-col">
+              <h2 className="text-[20px] font-semibold">Listed By:</h2>
+              <div className="flex flex-col gap-2 justify-center items-start">
                 <span>
                   Name: {property.listedBy ? property.listedBy.name : ""}
                 </span>
