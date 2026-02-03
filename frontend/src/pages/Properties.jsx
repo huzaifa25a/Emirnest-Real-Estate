@@ -97,9 +97,8 @@ const Properties = () => {
             }
           </div>
           :
-          <span className='mt-10 items-center flex flex-row gap-1 font-medium text-[20px]'>
-              The backend is running on free version so it may take some time to load. Please wait 
-              <img src={loader} className='h-10'/>
+          <span className='mt-10 flex flex-row gap-1 flex-wrap font-medium text-[20px]'>
+              It may take some time to load. <span className='flex flex-row gap-1'>Please wait <img src={loader} className='h-10'/></span>
           </span>
         }
       </div>
