@@ -94,7 +94,7 @@ const Properties = () => {
             }
           </div>
           :
-          <span className='mt-10 flex flex-row gap-1 flex-wrap font-medium text-[20px]'>
+          <span className='mt-10 flex flex-row justify-center  gap-1 flex-wrap font-medium text-[20px]'>
               It may take some time to load. <span className='flex flex-row gap-1'>Please wait <img src={loader} className='h-10'/></span>
           </span>
         }
