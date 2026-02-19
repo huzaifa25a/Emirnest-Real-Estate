@@ -4,9 +4,6 @@ import Header from '../components/Header'
 import '../index.css'
 
 const Contact = () => {
-  const live = import.meta.env.VITE_API_BASE_URL;
-  // const live = 'http://localhost:3000';
-
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -23,7 +20,7 @@ const Contact = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try{
-      const sendMessage = await axios.post(`${live}/api/contact/contactUs`, {
+      const sendMessage = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/contact/contactUs`, {
         name: form.name,
         email: form.email,
         subject: form.subject,

@@ -5,9 +5,6 @@ import { useAuth } from "../context/auth";
 import Header from "../components/Header";
 
 const Listproperty = () => {
-  const live = import.meta.env.VITE_API_BASE_URL;
-  // const live = 'http://localhost:3000';
-
   function generatePropertyID() {
     const id = Math.floor(Math.random() * 90000) + 10000;
     const property_id = "property-" + id;
@@ -60,7 +57,7 @@ const Listproperty = () => {
     const token = localStorage.getItem("token");
     try {
       const newProperty = await axios.post(
-        `${live}/api/property/add_your_listing`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/property/add_your_listing`,
         {
           property_ID: formData.property_ID,
           title: formData.title,
@@ -106,7 +103,7 @@ const Listproperty = () => {
       <Header />
       <div className="gap-6 flex flex-col justify-center items-center w-auto ml-[50px]">
         <h2 className="text-[28px] font-semibold">
-          List your property by filling out form below:
+          List Your Property
         </h2>
         <form
           onSubmit={listingHandler}
@@ -276,7 +273,7 @@ const Listproperty = () => {
                 <label>
                   <input
                     type="radio"
-                    name="term"
+                    name="usage"
                     value="Commercial"
                     checked={formData.usage === "Commercial"}
                     onChange={handleChange}

@@ -24,11 +24,13 @@ const Property_Details = mongoose.Schema({
     parking: {type: String, enum: ["Yes", "No"]},
     date: {type: String, required: true},
     imageURL: {type: String},
+    ownerName: {type: String},
     ownerPhone: {type: Number, required: true},
     ownerEmail: {type: String},
     listedBy: {
         user_ID: {type: String, required: true},
         name: {type: String, required: true},
+        phone: {type: Number},
         email: {type: String, required: true},
     },
 

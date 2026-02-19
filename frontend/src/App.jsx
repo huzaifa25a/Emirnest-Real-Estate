@@ -12,6 +12,7 @@ import Footer from './components/Footer'
 import TaC from './pages/TermsAndConditions'
 import PropertyPage from './pages/PropertyPage';
 import MyListings from './pages/MyListings'
+import AccountDetails from './pages/AccountDetails';
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
             <Route path='/properties/:property_ID' element={<PropertyPage/>}/>
             <Route path='/list_property' element={<ListProperty/>}/>
             <Route path='/my-listings' element={<MyListings/>}/>
+            <Route path='my-account' element={<AccountDetails/>}/>
             <Route path='/Terms_and_conditions' element={<TaC/>}/>
           </Routes>
         </div>

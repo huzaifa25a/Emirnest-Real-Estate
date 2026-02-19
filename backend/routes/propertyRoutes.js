@@ -56,7 +56,7 @@ router.post('/add_your_listing', protect, async (req, res) => {
    }
 })
 
-router.delete('/delete_property', async (req, res) => {
+router.delete('/delete_property', protect, async (req, res) => {
     try{
         console.log('HEREEEEE');
         console.log(req.query.id);
@@ -75,7 +75,47 @@ router.delete('/delete_property', async (req, res) => {
     }
 })
 
-router.get('/my_listings', async (req, res) => {
+router.put('/edit_listing/:id', protect, async (req, res) => {
+    try{
+        const {title, description, price, term, type, usage, purpose, address, bedrooms, bathrooms, area, areaUnit, furnishing, parking, ownerName, ownerPhone, ownerEmail, imageURL} = req.body;
+
+        const id = req.params.id
+       
+        const updateProperty = await property.findByIdAndUpdate(id, {
+            title,
+            description,
+            price,
+            term,
+            type,
+            usage,
+            purpose,
+            address,
+            bedrooms,
+            bathrooms,
+            area,
+            areaUnit,
+            furnishing,
+            parking,
+            ownerName,
+            ownerPhone,
+            ownerEmail,
+            imageURL,
+        },
+        {new: true}
+    )
+        
+        res.status(201).json({
+            message: "Listing updated!",
+            updateProperty
+        });
+       }
+       catch(error){
+        console.error("Error Occured --->",error);
+        return res.status(500).json({message: "Some internal server error!"});
+       }
+})
+
+router.get('/my_listings', protect, async (req, res) => {
     try{
         console.log('HELLLOOOO')
         const user = jwt.verify(req.query.token, process.env.jwt_secret)

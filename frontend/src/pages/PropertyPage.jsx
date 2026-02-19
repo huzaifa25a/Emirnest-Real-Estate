@@ -10,9 +10,6 @@ import location from "../assets/location.svg";
 import img from "../assets/emirest_house_images/pexels-pixabay-209315.jpg";
 
 const PropertyPage = () => {
-  const live = import.meta.env.VITE_API_BASE_URL;
-  // const live = 'http://localhost:3000';
-
   const { property_ID } = useParams();
   const [property, setProperty] = useState({});
 
@@ -20,7 +17,7 @@ const PropertyPage = () => {
     async function fetchProperty() {
       try {
         const result = await axios.get(
-          `${live}/api/property/${property_ID}`
+          `${import.meta.env.VITE_API_BASE_URL}/api/property/${property_ID}`
         );
         const propertyData = result.data;
         console.log(propertyData);

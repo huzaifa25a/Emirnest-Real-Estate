@@ -6,9 +6,6 @@ import { useSearchParams } from 'react-router-dom'
 import loader from '../assets/bouncing-circles.svg';
 
 const Properties = () => {
-  const live = import.meta.env.VITE_API_BASE_URL;
-  // const live = 'http://localhost:3000';
-
   const [propertyList, setPropertyList] = useState([]);
   const [Loader, setLoader] = useState(false);
   const [searchParams] = useSearchParams();
@@ -20,7 +17,7 @@ const Properties = () => {
   useEffect(() => {
     async function fetchProperties(){
       setLoader(true);
-      const response = await axios.get(`${live}/api/property/all_properties`);
+      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/property/all_properties`);
       const properties = response.data;
       setPropertyList(properties);
       setLoader(false);

@@ -73,4 +73,20 @@ router.get('/checkAuth', protect, async (req, res) => {
     }
 })
 
+router.get('/accountDetails', protect, async (req, res) => {
+    try{
+        const id = req.user.id;
+        const user = await User.findOne({_id: id});
+        res.json({
+            name: user.username,
+            email: user.email,
+            phone: user.phone,
+            createdAt: user.createdAt
+        });
+    }
+    catch(err){
+        res.status(401).json({message: "Unauthorized!"});
+    }
+})
+
 module.exports = router;

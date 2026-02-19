@@ -7,9 +7,6 @@ import list from '../assets/list.svg'
 import person from '../assets/person.svg'
 
 const Account = () => {
-    const live = import.meta.env.VITE_API_BASE_URL;
-    // const live = 'http://localhost:3000';
-
     const {isLoggedIn, logout} = useAuth();
 
     const token = localStorage.getItem('token');
@@ -19,7 +16,7 @@ const Account = () => {
     useEffect(() => {
         async function getUserInfo(){
             try{
-                const response = await axios.get(`${live}/api/auth/checkAuth`,{
+                const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/auth/checkAuth`,{
                     headers: {Authorization: `Bearer ${token}`}
                 });
                 console.log('Response Received --->', response);
@@ -52,7 +49,10 @@ const Account = () => {
             <div className='p-4 flex flex-col items-center gap-6 z-0 bg-[white] border-gray-300 rounded-lg border-2 top-20 absolute w-[300px] right-2 shadow-md'>
                 <span className='text-center'>Welcome, {user}!</span>
                 <div className='flex flex-col'>
-                    <span className='flex flex-row gap-3 items-center pl-4 px-1 py-2 w-[300px] text-center border-gray-200 border-y-[2px] border-x-gray-300 border-x-2 cursor-pointer hover:bg-gray-100 duration-200'>
+                    <span 
+                        onClick={() => navigate('/my-account')}
+                        className='flex flex-row gap-3 items-center pl-4 px-1 py-2 w-[300px] text-center border-gray-200 border-y-[2px] border-x-gray-300 border-x-2 cursor-pointer hover:bg-gray-100 duration-200'
+                    >
                         <img src={person} className='h-5 w-5'/>
                         Account
                     </span>

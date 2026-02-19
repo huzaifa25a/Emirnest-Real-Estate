@@ -6,9 +6,6 @@ import instagram from '../assets/icons8-instagram.svg'
 import linkedin from '../assets/icons8-linkedin.svg'
 
 const Footer = () => {
-  const live = import.meta.env.VITE_API_BASE_URL;
-  // const live = 'http://localhost:3000';
-
   const [email, setEmail] = useState("");
   const [message, showMessage] = useState(false);
 
@@ -18,7 +15,7 @@ const Footer = () => {
       return alert("Please enter valid email address!");
     }
     try{
-      await axios.post(`${live}/api/mailingList/email`, {email})
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/mailingList/email`, {email})
       .then(
         showMessage(true)
       )

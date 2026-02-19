@@ -5,9 +5,6 @@ import {useAuth} from '../context/auth'
 import Header from '../components/Header'
 
 const Signin = () => {
-  const live = import.meta.env.VITE_API_BASE_URL;
-  // const live = 'http://localhost:3000';
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,7 +21,7 @@ const Signin = () => {
       return alert('The password do not match!');
     }
     try{
-      const res = await axios.post(`${live}/api/auth/signin`, 
+      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/auth/signin`, 
         {
           username: name,
           email,
